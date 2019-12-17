@@ -26,21 +26,34 @@ import com.mobiliya.expensemanager.repositories.ExpenseRepository;
 import com.mobiliya.expensemanager.service.ExpenseService;
 import com.mobiliya.expensemanager.service.impl.ExpenseServiceImpl;
 
+
+/**
+ * The Class ExpenseControllerTest.
+ *
+ * @author Nitin
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class ExpenseControllerTest {
 
+	/** The expense test repository. */
 	@Mock
 	ExpenseRepository expenseTestRepository;
 
+	/** The expense controller. */
 	@InjectMocks
 	ExpenseController expenseController;
 	
 	
+	/** The expense service. */
 	ExpenseService expenseService;
 	
+	/** The expense object converter. */
 	@InjectMocks
 	ExpenseObjectConverter expenseObjectConverter;
 	
+	/**
+	 * Inits the mocks.
+	 */
 	@Before
 	public void initMocks() {
 		MockitoAnnotations.initMocks(this);
@@ -48,20 +61,45 @@ public class ExpenseControllerTest {
 		expenseController.service = expenseService;
 	}
 
+	/**
+	 * Adds the expense.
+	 */
 	@Test
 	public void addExpense() {
 		ExpenseDto s2 = this.getExpenseDTO();
-		ResponseEntity<ExpenseDto> re = this.getExpenseDTOResponse();
+		//ResponseEntity<ExpenseDto> re = this.getExpenseDTOResponse();
 		//when(expenseController.addingExpense(s2)).thenReturn(re);
 		when(expenseService.addExpense(s2)).thenReturn(s2);
 		
 		assertEquals(s2, expenseController.addingExpense(s2).getBody());
 	}
 
-	private ResponseEntity<ExpenseDto> getExpenseDTOResponse() {
-		return new ResponseEntity<ExpenseDto>(this.getExpenseDTO(), HttpStatus.OK);
+	/**
+	 * Gets the expense DTO response.
+	 *
+	 * @return the expense DTO response
+	 */
+	private ResponseEntity<Double> getExpenseDTOResponse() {
+		return new ResponseEntity<Double>(new Double(4000), HttpStatus.OK);
+	}
+	
+	/**
+	 * Gets the sum of all expenses.
+	 *
+	 * @return the sum of all expenses
+	 */
+	@Test
+	public void getSumOfAllExpenses() {
+		when(expenseService.getSumOfAllExpenses()).thenReturn((double) 4000);
+		
+		assertEquals(getExpenseDTOResponse().getBody(), expenseController.getSumOfAllExpenses().getBody());
 	}
 
+	/**
+	 * Gets the expense DTO.
+	 *
+	 * @return the expense DTO
+	 */
 	private ExpenseDto getExpenseDTO() {
 		Date d1 = null;
 		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");

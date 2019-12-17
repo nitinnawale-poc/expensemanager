@@ -10,12 +10,24 @@ import com.mobiliya.expensemanager.dto.ExpenseDto;
 import com.mobiliya.expensemanager.entities.Expense;
 
 
+/**
+ * The Class ExpenseObjectConverter.
+ *
+ * @author Nitin
+ */
 @Service
 public class ExpenseObjectConverter implements Converter<ExpenseDto, Expense> {
 
+	/** The category converter. */
 	@Inject
 	CategoryObjectConverter categoryConverter;
 	
+	/**
+	 * Convert dto to entity.
+	 *
+	 * @param dto the dto
+	 * @return the expense
+	 */
 	@Override
 	public Expense convertDtoToEntity(ExpenseDto dto) {
 		Expense expense=new Expense();
@@ -26,6 +38,12 @@ public class ExpenseObjectConverter implements Converter<ExpenseDto, Expense> {
 		return expense;
 	}
 
+	/**
+	 * Convert entity to dto.
+	 *
+	 * @param entity the entity
+	 * @return the expense dto
+	 */
 	@Override
 	public ExpenseDto convertEntityToDto(Expense entity) {
 		ExpenseDto dto=new ExpenseDto();
