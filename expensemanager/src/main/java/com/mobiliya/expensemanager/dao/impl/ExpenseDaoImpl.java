@@ -19,7 +19,6 @@ import com.mobiliya.expensemanager.exception.DataRetrievalException;
 import com.mobiliya.expensemanager.repositories.CategoryRepository;
 import com.mobiliya.expensemanager.repositories.ExpenseRepository;
 
-
 /**
  * The Class ExpenseDaoImpl.
  *
@@ -27,26 +26,26 @@ import com.mobiliya.expensemanager.repositories.ExpenseRepository;
  */
 @Service
 public class ExpenseDaoImpl implements ExpenseDao {
-	
+
 	/** The logger. */
-	Logger logger=LoggerFactory.getLogger(ExpenseDaoImpl.class);
+	Logger logger = LoggerFactory.getLogger(ExpenseDaoImpl.class);
 
 	/** The category repository. */
 	@Inject
 	CategoryRepository categoryRepository;
-	
+
 	/** The expense repository. */
 	@Inject
 	ExpenseRepository expenseRepository;
-	
+
 	/** The expense converter. */
 	@Inject
 	ExpenseObjectConverter expenseConverter;
-	
+
 	/** The category converter. */
 	@Inject
 	CategoryObjectConverter categoryConverter;
-	
+
 	/**
 	 * Gets the list of expenses.
 	 *
@@ -55,32 +54,32 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	 */
 	@Override
 	public List<ExpenseDto> getListOfExpenses(String categoryName) {
-		logger.info("getting Expenses for the Category Name : "+categoryName);
-		List<Expense> entityList=Collections.emptyList();
+		logger.info("getting Expenses for the Category Name : " + categoryName);
+		List<Expense> entityList = Collections.emptyList();
 		try {
-			if(StringUtils.isEmpty(categoryName)) {
-				entityList=expenseRepository.findAll();
-			}else {
-				entityList=expenseRepository.findByCategory_CategoryName(categoryName);
+			if (StringUtils.isEmpty(categoryName)) {
+				entityList = expenseRepository.findAll();
+			} else {
+				entityList = expenseRepository.findByCategory_CategoryName(categoryName);
 			}
 		} catch (Exception e) {
-			logger.error("Error while Fetching Data : "+e.getMessage());
+			logger.error("Error while Fetching Data : " + e.getMessage());
 			throw new DataRetrievalException("Data Retrieval Error", e);
-			
+
 		}
 		return createExpenseDtoList(entityList);
 	}
-	
+
 	/**
 	 * Creates the expense dto list.
 	 *
 	 * @param entityList the entity list
 	 * @return the list
 	 */
-	public List<ExpenseDto> createExpenseDtoList(List<Expense> entityList){
-		 List<ExpenseDto> expenses= new ArrayList<ExpenseDto>();
-	        entityList.forEach(e->expenses.add(expenseConverter.convertEntityToDto(e)));
-	        return expenses;
+	public List<ExpenseDto> createExpenseDtoList(List<Expense> entityList) {
+		List<ExpenseDto> expenses = new ArrayList<ExpenseDto>();
+		entityList.forEach(e -> expenses.add(expenseConverter.convertEntityToDto(e)));
+		return expenses;
 	}
 
 	/**
@@ -93,14 +92,15 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	public ExpenseDto addExpense(ExpenseDto dto) {
 		logger.info("Adding Expense in the Repository");
 		ExpenseDto expenseDto;
-		 try {
-			 expenseDto=expenseConverter.convertEntityToDto(expenseRepository.save(expenseConverter.convertDtoToEntity(dto)));
+		try {
+			expenseDto = expenseConverter
+					.convertEntityToDto(expenseRepository.save(expenseConverter.convertDtoToEntity(dto)));
 		} catch (Exception e) {
-			logger.error("Error while Adding Data : "+e.getMessage());
+			logger.error("Error while Adding Data : " + e.getMessage());
 			throw new DataRetrievalException("Data Retrieval Error", e);
 		}
 		return expenseDto;
-		
+
 	}
 
 	/**
@@ -111,16 +111,16 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	 */
 	@Override
 	public List<ExpenseDto> getExpensesAfterDate(Date date) {
-		logger.info("Fetching Expense from the repository on date : "+ date);
-		List<Expense> entityList=Collections.emptyList();
+		logger.info("Fetching Expense from the repository on date : " + date);
+		List<Expense> entityList = Collections.emptyList();
 		try {
-			if(date!=null) {
-				entityList=expenseRepository.findExpensesAfterDateSpecified(date);
+			if (date != null) {
+				entityList = expenseRepository.findExpensesAfterDateSpecified(date);
 			}
 		} catch (Exception e) {
-			logger.error("Error while Adding Data : "+e.getMessage());
+			logger.error("Error while Adding Data : " + e.getMessage());
 			throw new DataRetrievalException("Data Retrieval Error", e);
-			
+
 		}
 		return createExpenseDtoList(entityList);
 	}
@@ -132,9 +132,14 @@ public class ExpenseDaoImpl implements ExpenseDao {
 	 */
 	@Override
 	public Double getSumOfAllExpenses() {
-		Double sum=null;
-		sum=expenseRepository.findSumOfAllExpenses();
-		
+		Double sum = null;
+		try {
+			sum = expenseRepository.findSumOfAllExpenses();
+		} catch (Exception e) {
+			logger.error("Error while Adding Data : " + e.getMessage());
+			throw new DataRetrievalException("Data Retrieval Error", e);
+		}
+
 		return sum;
 	}
 
