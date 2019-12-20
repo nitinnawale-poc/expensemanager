@@ -1,6 +1,5 @@
 package com.mobiliya.expensemanager.dto;
 
-
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -20,104 +19,60 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApiErrorDto implements Serializable {
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = 1L;
+/** The Constant serialVersionUID. */
+private static final long serialVersionUID = 1L;
 
-    /** The message. */
-    @JsonProperty("message")
-    private String message;
-    
-    /** The status. */
-    @JsonProperty("status")
-    private HttpStatus status;
-    
-    /** The timestamp. */
-    @JsonProperty("timestamp")
-    private String timestamp;    
+/** The message. */
+@JsonProperty("message")
+private String message;
 
-    /**
-     * Gets the message.
-     *
-     * @return the message
-     */
-    public String getMessage() {
-		return message;
-	}
+/** The status. */
+@JsonProperty("status")
+private HttpStatus status;
 
-	/**
-	 * Sets the message.
-	 *
-	 * @param message the new message
-	 */
-	public void setMessage(String message) {
-		this.message = message;
-	}
+/** The timestamp. */
+@JsonProperty("timestamp")
+private String timestamp;
 
-	/**
-	 * Gets the status.
-	 *
-	 * @return the status
-	 */
-	public HttpStatus getStatus() {
-		return status;
-	}
 
-	/**
-	 * Sets the status.
-	 *
-	 * @param status the new status
-	 */
-	public void setStatus(HttpStatus status) {
-		this.status = status;
-	}
+public String getMessage() {
+return message;
+}
 
-	/**
-	 * Gets the timestamp.
-	 *
-	 * @return the timestamp
-	 */
-	public String getTimestamp() {
-		return timestamp;
-	}
+public void setMessage(String message) {
+this.message = message;
+}
 
-	/**
-	 * Sets the timestamp.
-	 *
-	 * @param timestamp the new timestamp
-	 */
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
+public HttpStatus getStatus() {
+return status;
+}
 
-	/**
-	 * Instantiates a new api error dto.
-	 */
-	private ApiErrorDto() {
-        timestamp = Instant.now().toString();
-    }
+public void setStatus(HttpStatus status) {
+this.status = status;
+}
 
-    /**
-     * Instantiates a new api error dto.
-     *
-     * @param status the status
-     */
-    public ApiErrorDto(HttpStatus status) {
-        this();
-        this.status = status;
-        this.message = "Unknown error occurred";
-    }
+public String getTimestamp() {
+return timestamp;
+}
 
-    /**
-     * Instantiates a new api error dto.
-     *
-     * @param status the status
-     * @param message the message
-     * @param ex the ex
-     */
-    public ApiErrorDto(HttpStatus status, String message, Throwable ex) {
-        this();
-        this.status = status;
-        this.message = ex.getMessage();
-    }
+public void setTimestamp(String timestamp) {
+this.timestamp = timestamp;
+}
+
+private ApiErrorDto() {
+timestamp = Instant.now().toString();
+}
+
+public ApiErrorDto(HttpStatus status) {
+this();
+this.status = status;
+this.message = "Unknown error occurred";
+}
+
+public ApiErrorDto(HttpStatus status, String message, Throwable ex) {
+this();
+this.status = status;
+this.message = ex.getMessage();
+}
 
 }

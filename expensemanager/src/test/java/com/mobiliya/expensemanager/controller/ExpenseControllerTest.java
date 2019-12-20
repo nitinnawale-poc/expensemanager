@@ -15,7 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -32,7 +31,7 @@ import com.mobiliya.expensemanager.service.impl.ExpenseServiceImpl;
  *
  * @author Nitin
  */
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class ExpenseControllerTest {
 
 	/** The expense test repository. */
@@ -71,7 +70,7 @@ public class ExpenseControllerTest {
 		//when(expenseController.addingExpense(s2)).thenReturn(re);
 		when(expenseService.addExpense(s2)).thenReturn(s2);
 		
-		assertEquals(s2, expenseController.addingExpense(s2).getBody());
+		assertEquals(s2, expenseController.addExpense(s2).getBody());
 	}
 
 	/**
