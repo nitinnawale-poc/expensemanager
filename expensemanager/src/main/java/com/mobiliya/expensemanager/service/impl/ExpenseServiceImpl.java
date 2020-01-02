@@ -18,55 +18,55 @@ import com.mobiliya.expensemanager.service.ExpenseService;
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
 
-/** The expense dao. */
-@Autowired
-private ExpenseDao expenseDao;
+    /** The expense dao. */
+    @Autowired
+    private ExpenseDao expenseDao;
 
-/**
- * Gets the expenses.
- *
- * @param categoryName the category name
- * @return the expenses
- */
-@Override
-public List<ExpenseDto> getExpenses(String categoryName) {
+    /**
+     * Gets the expenses.
+     *
+     * @param categoryName the category name
+     * @return the expenses
+     */
+    @Override
+    public List<ExpenseDto> getExpenses(String categoryName) {
 
-return expenseDao.getListOfExpenses(categoryName);
-}
+        return expenseDao.getListOfExpenses(categoryName);
+    }
 
-/**
- * Adds the expense.
- *
- * @param dto the dto
- * @return the expense dto
- */
-@Override
-public ExpenseDto addExpense(ExpenseDto dto) {
+    /**
+     * Adds the expense.
+     *
+     * @param dto the dto
+     * @return the expense dto
+     */
+    @Override
+    public ExpenseDto addExpense(ExpenseDto dto) {
 
-return expenseDao.addExpense(dto);
+        return expenseDao.addExpense(dto);
 
-}
+    }
 
-/**
- * Gets the expense after date.
- *
- * @param date the date
- * @return the expense after date
- */
-@Override
-public List<ExpenseDto> getExpenseAfterDate(Date date) {
+    /**
+     * Gets the expense after date.
+     *
+     * @param date the date
+     * @return the expense after date
+     */
+    @Override
+    public List<ExpenseDto> getExpenseAfterDate(Date date) {
 
-return expenseDao.getExpensesAfterDate(date);
-}
+        return expenseDao.getExpensesAfterDate(date);
+    }
 
-/**
- * Gets the sum of all expenses.
- *
- * @return the sum of all expenses
- */
-@Override
-public Double getSumOfAllExpenses() {
-return expenseDao.getSumOfAllExpenses();
-}
+    /**
+     * Gets the sum of all expenses.
+     *
+     * @return the sum of all expenses
+     */
+    @Override
+    public Double getSumOfAllExpenses() {
+        return expenseDao.getSumOfAllExpenses();
+    }
 
 }

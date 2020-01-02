@@ -20,23 +20,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class MessageExecutorService {
 
-/** The logger. */
-Logger logger=LoggerFactory.getLogger(MessageExecutorService.class);
+    /** The logger. */
+    Logger logger = LoggerFactory.getLogger(MessageExecutorService.class);
 
-/**
- * Prints the message on console.
- */
-public String printMessageOnConsole() {
-String str="Started";
-ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-Runnable task=new Runnable() {
-@Override
-public void run() {
-System.out.println("Hello, Please check your Email");
-}
-};
-scheduler.scheduleAtFixedRate(task, 0, 5, TimeUnit.SECONDS);
-return str;
-}
+    /**
+     * Prints the message on console.
+     */
+    public String printMessageOnConsole() {
+        String str = "Started";
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello, Please check your Email");
+            }
+        };
+        scheduler.scheduleAtFixedRate(task, 0, 5, TimeUnit.SECONDS);
+        return str;
+    }
 
 }

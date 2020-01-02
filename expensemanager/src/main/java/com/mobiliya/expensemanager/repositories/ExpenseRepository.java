@@ -16,28 +16,28 @@ import com.mobiliya.expensemanager.entities.Expense;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 
-/**
- * Find by category category name.
- *
- * @param name the name
- * @return the list
- */
-public List<Expense> findByCategory_CategoryName(String name);
+    /**
+     * Find by category category name.
+     *
+     * @param name the name
+     * @return the list
+     */
+    public List<Expense> findByCategory_CategoryName(String name);
 
-/**
- * Find expenses after date specified.
- *
- * @param date the date
- * @return the list
- */
-@Query("SELECT e FROM Expense e WHERE e.date>= :date")
-public List<Expense> findExpensesAfterDateSpecified(@Param("date") Date date);
+    /**
+     * Find expenses after date specified.
+     *
+     * @param date the date
+     * @return the list
+     */
+    @Query("SELECT e FROM Expense e WHERE e.date>= :date")
+    public List<Expense> findExpensesAfterDateSpecified(@Param("date") Date date);
 
-/**
- * Find sum of all expenses.
- *
- * @return the double
- */
-@Query("SELECT SUM(e.amount) from Expense e")
-public Double findSumOfAllExpenses();
+    /**
+     * Find sum of all expenses.
+     *
+     * @return the double
+     */
+    @Query("SELECT SUM(e.amount) from Expense e")
+    public Double findSumOfAllExpenses();
 }

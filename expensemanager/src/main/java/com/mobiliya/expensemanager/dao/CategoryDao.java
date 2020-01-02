@@ -12,19 +12,19 @@ import com.mobiliya.expensemanager.dto.ExpenseDto;
  */
 public interface CategoryDao {
 
-/**
- * Gets the list of category.
- *
- * @param categoryName the category name
- * @return the list of category
- */
-public List<ExpenseDto> getListOfCategory(String categoryName);
+    /**
+     * Gets the list of category.
+     *
+     * @param categoryName the category name
+     * @return the list of category
+     */
+    public List<ExpenseDto> getListOfCategory(String categoryName);
 
-/**
- * Adds the category.
- *
- * @param dto the dto
- * @return the category dto
- */
-public CategoryDto addCategory(ExpenseDto dto);
+    /**
+     * Adds the category.
+     *
+     * @param dto the dto
+     * @return the category dto
+     */
+    public CategoryDto addCategory(ExpenseDto dto);
 }

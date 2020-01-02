@@ -19,60 +19,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ApiErrorDto implements Serializable {
 
-/** The Constant serialVersionUID. */
-private static final long serialVersionUID = 1L;
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
-/** The message. */
-@JsonProperty("message")
-private String message;
+    /** The message. */
+    @JsonProperty("message")
+    private String message;
 
-/** The status. */
-@JsonProperty("status")
-private HttpStatus status;
+    /** The status. */
+    @JsonProperty("status")
+    private HttpStatus status;
 
-/** The timestamp. */
-@JsonProperty("timestamp")
-private String timestamp;
+    /** The timestamp. */
+    @JsonProperty("timestamp")
+    private String timestamp;
 
+    public String getMessage() {
+        return message;
+    }
 
-public String getMessage() {
-return message;
-}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-public void setMessage(String message) {
-this.message = message;
-}
+    public HttpStatus getStatus() {
+        return status;
+    }
 
-public HttpStatus getStatus() {
-return status;
-}
+    public void setStatus(HttpStatus status) {
+        this.status = status;
+    }
 
-public void setStatus(HttpStatus status) {
-this.status = status;
-}
+    public String getTimestamp() {
+        return timestamp;
+    }
 
-public String getTimestamp() {
-return timestamp;
-}
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
 
-public void setTimestamp(String timestamp) {
-this.timestamp = timestamp;
-}
+    private ApiErrorDto() {
+        timestamp = Instant.now().toString();
+    }
 
-private ApiErrorDto() {
-timestamp = Instant.now().toString();
-}
+    public ApiErrorDto(HttpStatus status) {
+        this();
+        this.status = status;
+        this.message = "Unknown error occurred";
+    }
 
-public ApiErrorDto(HttpStatus status) {
-this();
-this.status = status;
-this.message = "Unknown error occurred";
-}
-
-public ApiErrorDto(HttpStatus status, String message, Throwable ex) {
-this();
-this.status = status;
-this.message = ex.getMessage();
-}
+    public ApiErrorDto(HttpStatus status, String message, Throwable ex) {
+        this();
+        this.status = status;
+        this.message = ex.getMessage();
+    }
 
 }

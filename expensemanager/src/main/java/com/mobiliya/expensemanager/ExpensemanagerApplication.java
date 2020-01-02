@@ -15,17 +15,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 public class ExpensemanagerApplication {
 
-/** The logger. */
-static Logger logger = LoggerFactory.getLogger(ExpensemanagerApplication.class);
+    /** The logger. */
+    static Logger logger = LoggerFactory.getLogger(ExpensemanagerApplication.class);
 
-/**
- * The main method.
- *
- * @param args the arguments
- */
-public static void main(String[] args) {
-logger.info("Application Started : " + args);
-SpringApplication.run(ExpensemanagerApplication.class, args);
-}
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
+    public static void main(String[] args) {
+        logger.info("Application Started : " + args);
+        SpringApplication.run(ExpensemanagerApplication.class, args);
+    }
 
 }

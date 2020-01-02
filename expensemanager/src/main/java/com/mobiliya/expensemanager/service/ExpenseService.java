@@ -10,35 +10,35 @@ import com.mobiliya.expensemanager.dto.ExpenseDto;
  */
 public interface ExpenseService {
 
-/**
- * Gets the expenses.
- *
- * @param categoryName the category name
- * @return the expenses
- */
-public List<ExpenseDto> getExpenses(String categoryName);
+    /**
+     * Gets the expenses.
+     *
+     * @param categoryName the category name
+     * @return the expenses
+     */
+    public List<ExpenseDto> getExpenses(String categoryName);
 
-/**
- * Adds the expense.
- *
- * @param dto the dto
- * @return the expense dto
- */
-public ExpenseDto addExpense(ExpenseDto dto);
+    /**
+     * Adds the expense.
+     *
+     * @param dto the dto
+     * @return the expense dto
+     */
+    public ExpenseDto addExpense(ExpenseDto dto);
 
-/**
- * Gets the expense after date.
- *
- * @param date the date
- * @return the expense after date
- */
-public List<ExpenseDto> getExpenseAfterDate(Date date);
+    /**
+     * Gets the expense after date.
+     *
+     * @param date the date
+     * @return the expense after date
+     */
+    public List<ExpenseDto> getExpenseAfterDate(Date date);
 
-/**
- * Gets the sum of all expenses.
- *
- * @return the sum of all expenses
- */
-public Double getSumOfAllExpenses();
+    /**
+     * Gets the sum of all expenses.
+     *
+     * @return the sum of all expenses
+     */
+    public Double getSumOfAllExpenses();
 
 }
